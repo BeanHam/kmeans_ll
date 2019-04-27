@@ -1,21 +1,12 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import numpy as np
 import pandas as pd
 import random
 import matplotlib.pyplot as plt
+import kmeanspp
 from sklearn.metrics import pairwise_distances
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-
-# In[ ]:
-
 
 class Kmeansll:
     """K-Meansll Clustering Algorithm"""
@@ -63,7 +54,7 @@ class Kmeansll:
                     centers.append(data[i])
         centers = np.array(centers)
         recluster_weight = self.calc_weight(data, centers)
-        reclusters = Kmeanspp(k).fit(centers, recluster_weight).labels
+        reclusters = kmeanspp.Kmeanspp(k).fit(centers, recluster_weight).labels
         initial_centers = []
         for i in np.unique(reclusters):
             initial_centers.append(np.mean(centers[reclusters == i], axis = 0))
